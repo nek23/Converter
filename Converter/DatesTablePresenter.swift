@@ -42,6 +42,7 @@ extension DatesTablePresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identificatorCell, for: indexPath)
+        cell.selectionStyle = .none
         cell.textLabel?.text = dates[indexPath.row]
         return cell
     }

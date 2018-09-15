@@ -65,6 +65,6 @@ extension ViewController : UITableViewDelegate {
         guard let date = presenter.date(for: indexPath.row) else { return }
         let detailPresenter = CurrencyDetailPresenter(with: date)
         let detailsViewController = DetailViewController(with: detailPresenter)
-        self.present(detailsViewController, animated: true, completion: nil)
+        self.present(detailsViewController, animated: false, completion: nil)
     }
 }
