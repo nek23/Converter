@@ -8,17 +8,37 @@
 
 import XCTest
 @testable import Converter
+import Quick
 
 class ConverterTests: XCTestCase {
-    
+ 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testData() {
+        let unitDate = Date(timeIntervalSince1970: 0)
+        let las = unitDate.subtract(days: 1).getDates(forLastNDays: 0)
+        XCTAssertEqual(las, ["31/12/1969"])
+    }
+    
+    func testTableHas15LastDays() {
+        let controller = DatesTableController(with: DatesTablePresenter())
+        let array = controller.presenter.model.dates
+        XCTAssertEqual(array, Date().getDates(forLastNDays: 15))
+        
+    }
+    
+    func testControllerHasTableView() {
+        let controller = DatesTableController(with: DatesTablePresenter())
+        controller.loadViewIfNeeded()
+        XCTAssertNotNil(controller.tableView)
     }
     
     func testExample() {

@@ -13,7 +13,7 @@ import SWXMLHash
 
 
 class CurrencyDetailPresenter {
-    let date: String
+    var date: String
     var courseEuro: String!
     var courseDollar: String!
     
@@ -42,13 +42,9 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-       // descriptionLabel.text = presenter.description
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-       getInternet()
+        getInternet()
         self.view.addSubview(descriptionLabel)
         self.view.addSubview(titleLabel)
         self.view.backgroundColor = presenter.backgroundColor
@@ -97,7 +93,6 @@ class DetailViewController: UIViewController {
                 if let data = response.data {
 
                     let xml = SWXMLHash.parse(data)
-
                     do {
                         self.presenter.courseDollar = try xml["ValCurs"]["Valute"].withAttribute("ID", "R01235")["Value"].element?.text
                         self.presenter.courseEuro = try xml["ValCurs"]["Valute"].withAttribute("ID", "R01239")["Value"].element?.text
@@ -107,10 +102,8 @@ class DetailViewController: UIViewController {
                         alert.addAction(UIAlertAction(title: "Окей", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }
-
-
                 }})
     }
-    
+   
     
 }

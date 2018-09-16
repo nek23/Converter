@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         let presenter = DatesTablePresenter()
-        let rootViewController = ViewController(with: presenter)
+        let rootViewController = DatesTableController(with: presenter)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true

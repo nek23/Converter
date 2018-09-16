@@ -37,9 +37,4 @@ extension Date {
         }
         return arrDates
     }
-    
-    func addDates() {
-        self.subtract(days: 16)
-        self.getDates(forLastNDays: 15)
-    }
 }

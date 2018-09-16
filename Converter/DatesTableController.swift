@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TableViewController.swift
 //  Converter
 //
 //  Created by Alex on 14.09.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DatesTableController: UIViewController {
 
     var presenter: DatesTablePresenter!
     var tableView: UITableView!
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController : UITableViewDelegate {
+extension DatesTableController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let date = presenter.date(for: indexPath.row) else { return }
         let detailPresenter = CurrencyDetailPresenter(with: date)
