@@ -21,9 +21,7 @@ class ConverterTests: XCTestCase {
         super.tearDown()
     }
     
-    
-    
-    func testData() {
+    func testDate() {
         let unitDate = Date(timeIntervalSince1970: 0)
         let las = unitDate.subtract(days: 1).getDates(forLastNDays: 0)
         XCTAssertEqual(las, ["31/12/1969"])
@@ -41,25 +39,4 @@ class ConverterTests: XCTestCase {
         controller.loadViewIfNeeded()
         XCTAssertNotNil(controller.tableView)
     }
-   
-    
-    func testTable() {
-        let detailController: DetailViewController!
-        let detailPresenter: CurrencyDetailPresenter!
-        //print(detailPresenter.date)
-        //detailController.getInternet()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
