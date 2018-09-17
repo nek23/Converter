@@ -8,10 +8,9 @@
 
 import XCTest
 @testable import Converter
-import Quick
 
 class ConverterTests: XCTestCase {
- 
+  
     override func setUp() {
         super.setUp()
         
@@ -21,6 +20,8 @@ class ConverterTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    
     
     func testData() {
         let unitDate = Date(timeIntervalSince1970: 0)
@@ -39,6 +40,14 @@ class ConverterTests: XCTestCase {
         let controller = DatesTableController(with: DatesTablePresenter())
         controller.loadViewIfNeeded()
         XCTAssertNotNil(controller.tableView)
+    }
+   
+    
+    func testTable() {
+        let detailController: DetailViewController!
+        let detailPresenter: CurrencyDetailPresenter!
+        //print(detailPresenter.date)
+        //detailController.getInternet()
     }
     
     func testExample() {

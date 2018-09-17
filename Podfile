@@ -7,7 +7,6 @@ target 'Converter' do
 
 pod 'Alamofire'
 pod 'SWXMLHash'
-pod 'Quick'
   # Pods for Converter
 
   target 'ConverterTests' do

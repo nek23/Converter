@@ -44,12 +44,12 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getInternet()
-        self.view.addSubview(descriptionLabel)
-        self.view.addSubview(titleLabel)
+        getCourse()
+        self.view.addSubview(courseLabel)
+        self.view.addSubview(dateLabel)
         self.view.backgroundColor = presenter.backgroundColor
         setupConstraints()
-        titleLabel.text = presenter.date
+        dateLabel.text = presenter.date
         
         let tapRecognizer = UITapGestureRecognizer(target: self,
                                                    action: #selector(self.onTap))
@@ -61,17 +61,17 @@ class DetailViewController: UIViewController {
     }
     
     func setupConstraints() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        descriptionLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        courseLabel.translatesAutoresizingMaskIntoConstraints = false
+        courseLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        courseLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
      
-        view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.bottomMargin, relatedBy: NSLayoutRelation.equal, toItem: self.topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 150))
+        view.addConstraint(NSLayoutConstraint(item: dateLabel, attribute: NSLayoutAttribute.bottomMargin, relatedBy: NSLayoutRelation.equal, toItem: self.topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 150))
     }
     
-    let descriptionLabel: UILabel = {
+    let courseLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 35)
         label.textColor = .white
@@ -79,7 +79,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    let titleLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = .orange
@@ -87,7 +87,7 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    func getInternet() {
+    func getCourse() {
         Alamofire.request("http://www.cbr.ru/scripts/XML_daily.asp", parameters: ["date_req": presenter.date])
             .responseString(completionHandler: { (response) in
                 if let data = response.data {
@@ -96,7 +96,7 @@ class DetailViewController: UIViewController {
                     do {
                         self.presenter.courseDollar = try xml["ValCurs"]["Valute"].withAttribute("ID", "R01235")["Value"].element?.text
                         self.presenter.courseEuro = try xml["ValCurs"]["Valute"].withAttribute("ID", "R01239")["Value"].element?.text
-                        self.descriptionLabel.text = self.presenter.description
+                        self.courseLabel.text = self.presenter.description
                     } catch {
                         let alert = UIAlertController(title: "Ошибка", message: "Не удалось получить курс валют на эту дату", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Окей", style: UIAlertActionStyle.default, handler: nil))
